@@ -7,3 +7,5 @@ cd video
 npm install
 npm start
 ```
+
+Special thanks for this course https://www.udemy.com/react-redux/
