@@ -11,14 +11,14 @@ import _ from 'lodash';
 export default class App extends Component {
   constructor(props){
     super(props);
-    this.state = { term: 'code', selectedVideo: null };
+    this.state = { term: '', selectedVideo: null };
     this.videoSearch = this.videoSearch.bind(this);
-    this.props.fetchVideos(this.state.term);
   }
 
   videoSearch(term){
-    this.setState({term: term });
+    this.setState({ term: term });
     this.props.fetchVideos(term);
+    this.setState({ selectedVideo: this.props.videos[0] });
   }
 
   render() {
@@ -28,6 +28,9 @@ export default class App extends Component {
       <div>
         <SearchBar onSearchTermChange={videoSearch}/>
           <VideoDetail video={this.state.selectedVideo} />
+          <VideoList
+            onVideoSelect={selectedVideo => this.setState({selectedVideo})}
+            videos={this.props.videos} />
       </div>
     );
   }
